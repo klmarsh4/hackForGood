@@ -1,9 +1,9 @@
-var accessToken = getAccess();
+var accessToken = getAccessToken();
 
 // The tag that we want
 var tagName = "puppy";
 
-var recentTagMediaUrl = "https://api.instagram.com/v1/tags/" + tagName "/media/recent?access_token=" + accessToken ;
+var recentTagMediaUrl = "https://api.instagram.com/v1/tags/" + tagName + "/media/recent?access_token=" + accessToken ;
 
 //var recentTagMedia = JSON.parse(text);
 
