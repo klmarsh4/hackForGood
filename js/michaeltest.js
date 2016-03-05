@@ -8,11 +8,28 @@ var recentTagMediaUrl = "https://api.instagram.com/v1/tags/" + tagName + "/media
 //var recentTagMedia = JSON.parse(text);
 
 
-httpGetAsync(recentTagMediaUrl, displayImg);
+//$.get(recentTagMediaUrl, displayImg);
 
-function displayImg(myJson){
-	
-	var obj = parse(myJson);
+$.ajax({
+    method: "GET",
+    url: recentTagMediaUrl,
+    dataType: "jsonp",
+    jsonp : "callback",
+    jsonpCallback: "jsonpcallback",
+    success: displayImg,
+    error: function(){console.log("error");},
+    complete: function(){console.log("complete");}
+});
+
+
+
+
+
+
+
+function displayImg(obj){
+	//console.log(myJson);
+	//var obj = JSON.parse(myJson);
 	var imgUrl = obj.data[0].images.low_resolution.url;
 	window.location = imgUrl;
 }
