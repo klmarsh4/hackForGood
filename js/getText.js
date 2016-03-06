@@ -47,7 +47,17 @@ function sortPics(){
     var zipped = _.zip(taggedPics,picRatings);
     zipped.sort(function(a, b) {return a[1] - b[1]})
     console.log(zipped);
+	//put array into html list
+	var html = "";
+	for (var i =0; i < zipped.length; i++) {
+		html += "<li>" + zipped[i][0]+ " " + zipped[i][1] +"</li>";
+	}
+	document.getElementById("zipped").innerHTML = html;
+	
   } else{
     setTimeout(sortPics, 500);
   }
+  
 }
+
+
