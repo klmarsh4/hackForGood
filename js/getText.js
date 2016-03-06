@@ -46,7 +46,7 @@ function setRating(obj){
 }
 
 function sortPics(){
-    if(taggedPics.length == picRatings.length){
+    if(picRatings.length>0 && taggedPics.length == picRatings.length){
     var zipped = _.zip(taggedPics,picRatings);
     zipped.sort(function(a, b) {return a[1].score - b[1].score})
     console.log(zipped);
@@ -73,6 +73,13 @@ function sortPics(){
     setTimeout(sortPics, 500);
   }
   
+}
+
+function clean(){
+  taggedPics = [];
+  picRatings = [];
+  document.getElementById("table").innerHTML = "";
+  console.log("cleared")
 }
 
 
