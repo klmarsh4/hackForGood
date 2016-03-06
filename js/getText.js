@@ -56,7 +56,12 @@ function sortPics(){
 	for (var i =0; i < zipped.length; i++) {
     var photo = zipped[i][0];
     var rating = zipped[i][1];
-		html += "<tr> <td>" + rating.type + ":<br>" + rating.score;
+		if (rating.score<0){
+      html += "<tr style=\"background-color: rgba(255,0,0,"+(-1*rating.score)+")\"> <td>" + rating.type + ":<br>" + rating.score;
+    }
+    else {
+      html += "<tr style=\"background-color: rgba(0,255,0,"+rating.score+")\"> <td>" + rating.type + ":<br>" + rating.score;
+    }
     html += "</td><td> <a href=" + photo.link + ">" + photo.caption.text + "</a> </td>"
     html += "<td> <img src=" + photo.images.thumbnail.url + "alt=" + photo.caption.text + " </td></tr>";
     //ratings += "<li>" + zipped[i][1].type + "</li>";
