@@ -40,7 +40,6 @@ function orderPics(taggedPicObjs){
 }
 
 function setRating(obj){
-  console.log(obj);
   for (var i=0; i<taggedPics.length && obj.text != taggedPics[i].caption.text;i++);
   picRatings[i] = obj.docSentiment;
 }
@@ -49,7 +48,6 @@ function sortPics(){
     if(picRatings.length>0 && taggedPics.length == picRatings.length){
     var zipped = _.zip(taggedPics,picRatings);
     zipped.sort(function(a, b) {return a[1].score - b[1].score})
-    console.log(zipped);
 	//put array into html list
 	//var urls = "", ratings = "";
   var html = "  <tr><th>Sentiment</th><th>Caption</th><th>Image</th></tr>";
@@ -79,7 +77,6 @@ function clean(){
   taggedPics = [];
   picRatings = [];
   document.getElementById("table").innerHTML = "";
-  console.log("cleared")
 }
 
 
