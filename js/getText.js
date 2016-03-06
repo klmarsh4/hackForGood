@@ -31,7 +31,7 @@ function getText(obj){
   var picRatings = [];
 function orderPics(taggedPicObjs){
   for(var i=0; i<taggedPicObjs.data.length;i++){
-    taggedPics.push(taggedPicObjs.data[i].link);
+    taggedPics.push(taggedPicObjs.data[i]);
   }
   taggedPicObjs.data.forEach(function(data){$.post("http://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment",
     "apikey=9b6a97c25e1c0a3b5a2989591629d81aefabd14c&text="+data.caption.text+"&outputMode=json",
@@ -40,19 +40,26 @@ function orderPics(taggedPicObjs){
 }
 
 function setRating(obj){
-  picRatings.push(obj.docSentiment.score);
+  picRatings.push(obj.docSentiment);
 }
 function sortPics(){
     if(taggedPics.length == picRatings.length){
     var zipped = _.zip(taggedPics,picRatings);
-    zipped.sort(function(a, b) {return a[1] - b[1]})
+    zipped.sort(function(a, b) {return a[1].score - b[1].score})
     console.log(zipped);
 	//put array into html list
-	var html = "";
+	//var urls = "", ratings = "";
+  var html = "";
 	for (var i =0; i < zipped.length; i++) {
-		html += "<li>" + zipped[i][0]+ " " + zipped[i][1] +"</li>";
+    var photo = zipped[i][0];
+    var rating = zipped[i][1];
+		html += "<li>" + rating.type;
+    html += ": <a href=" + photo.link + ">" + photo.caption.text + "</a>"
+    html += "<img src=" + photo.images.thumbnail.url + "alt=" + photo.caption.text + " </li>";
+    //ratings += "<li>" + zipped[i][1].type + "</li>";
 	}
 	document.getElementById("zipped").innerHTML = html;
+  //document.getElementById("ratings").innerHTML = ratings;
 	
   } else{
     setTimeout(sortPics, 500);
