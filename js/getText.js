@@ -25,4 +25,27 @@ function getText(obj){
     "apikey=9b6a97c25e1c0a3b5a2989591629d81aefabd14c&text="+text+"&outputMode=json",
     function(obj){console.log(obj);});}
   });
+  var taggedPics = [];
+  var picRatings = [];
+function orderPics(taggedPicObjs){
+  for(var i=0; i<taggedPicObjs.data.length;i++){
+    taggedPics.push(taggedPicObjs.data[i].link);
+  }
+  taggedPicObjs.data.forEach(function(data){$.post("http://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment",
+    "apikey=9b6a97c25e1c0a3b5a2989591629d81aefabd14c&text="+data.caption.text+"&outputMode=json",
+    setRating)});
+  sortPics();
+}
+
+function setRating(obj){
+  picRatings.push(obj.docSentiment.score);
+}
+function sortPics(){
+    if(taggedPics.length == picRatings.length){
+    var zipped = _.zip(taggedPics,picRatings);
+    zipped.sort(function(a, b) {return a[1] - b[1]})
+    console.log(zipped);
+  } else{
+    setTimeout(sortPics, 500);
+  }
 }
