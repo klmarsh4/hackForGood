@@ -25,6 +25,8 @@ function getText(obj){
     "apikey=9b6a97c25e1c0a3b5a2989591629d81aefabd14c&text="+text+"&outputMode=json",
     function(obj){console.log(obj);});}
   });
+}
+
   var taggedPics = [];
   var picRatings = [];
 function orderPics(taggedPicObjs){
