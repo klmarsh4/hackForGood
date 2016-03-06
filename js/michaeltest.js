@@ -16,7 +16,7 @@ $.ajax({
     dataType: "jsonp",
     jsonp : "callback",
     jsonpCallback: "jsonpcallback",
-    success: displayImg,
+    success: getText,
     error: function(){console.log("error");},
     complete: function(){console.log("complete");}
 });
