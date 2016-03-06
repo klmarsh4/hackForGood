@@ -1,14 +1,10 @@
 var accessToken = getAccessToken();
 // The tag that we want
-var tagName = "lunch";
-
-//var recentTagMediaUrl = "https://api.instagram.com/v1/tags/" + tagName + "/media/recent?access_token=" + accessToken ;
+var tagname = null;
+if(tagname == null){
+tagName = prompt("Please enter the tag you'd like to search for", "<tag goes here>");
+}
 var recentTagMediaUrl = "https://api.instagram.com/v1/users/self/media/recent/?access_token=" + accessToken;
-
-//var recentTagMedia = JSON.parse(text);
-
-
-//$.get(recentTagMediaUrl, displayImg);
 
 $.ajax({
     method: "GET",
@@ -16,7 +12,7 @@ $.ajax({
     dataType: "jsonp",
     jsonp : "callback",
     jsonpCallback: "jsonpcallback",
-    success: getText,
+    success: searchForTag,
     error: function(){console.log("error");},
     complete: function(){console.log("complete");}
 });
