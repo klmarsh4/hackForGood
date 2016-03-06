@@ -1,21 +1,4 @@
-var accessToken = getAccessToken();
-// The tag that we want
-var tagname = null;
-if(tagname == null){
-tagName = prompt("Please enter the tag you'd like to search for", "<tag goes here>");
-}
-var recentTagMediaUrl = "https://api.instagram.com/v1/users/self/media/recent/?access_token=" + accessToken;
 
-$.ajax({
-    method: "GET",
-    url: recentTagMediaUrl,
-    dataType: "jsonp",
-    jsonp : "callback",
-    jsonpCallback: "jsonpcallback",
-    success: searchForTag,
-    error: function(){console.log("error");},
-    complete: function(){console.log("complete");}
-});
 
 
 function searchForTag(obj){
@@ -44,9 +27,9 @@ function searchForTag(obj){
 		}
 	
 	}
-	console.log(obj);
+	//console.log(obj);
 	// CALL YOUR FUNCTION WITH NEW obj HERE
-	
+	orderPics(obj);
 }
 		
 	
