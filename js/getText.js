@@ -34,14 +34,17 @@ function orderPics(taggedPicObjs){
     taggedPics.push(taggedPicObjs.data[i]);
   }
   taggedPicObjs.data.forEach(function(data){$.post("http://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment",
-    "apikey=9b6a97c25e1c0a3b5a2989591629d81aefabd14c&text="+data.caption.text+"&outputMode=json",
-    setRating)});
+    "apikey=9b6a97c25e1c0a3b5a2989591629d81aefabd14c&text="+data.caption.text+"&outputMode=json&showSourceText=1",
+    setRating);});
   sortPics();
 }
 
 function setRating(obj){
-  picRatings.push(obj.docSentiment);
+  console.log(obj);
+  for (var i=0; i<taggedPics.length && obj.text != taggedPics[i].caption.text;i++);
+  picRatings[i] = obj.docSentiment;
 }
+
 function sortPics(){
     if(taggedPics.length == picRatings.length){
     var zipped = _.zip(taggedPics,picRatings);
@@ -55,7 +58,7 @@ function sortPics(){
     var rating = zipped[i][1];
 		html += "<li>" + rating.type;
     html += ": <a href=" + photo.link + ">" + photo.caption.text + "</a>"
-    html += "<img src=" + photo.images.thumbnail.url + "alt=" + photo.caption.text + " </li>";
+    html += " <img src=" + photo.images.thumbnail.url + "alt=" + photo.caption.text + " </li>";
     //ratings += "<li>" + zipped[i][1].type + "</li>";
 	}
 	document.getElementById("zipped").innerHTML = html;
