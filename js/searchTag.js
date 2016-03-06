@@ -24,8 +24,7 @@ function searchForTag(obj){
 		while (tagCount>0){
 			if (obj.data[dataCount-1].tags[tagCount-1] == tagName){
 
-				console.log(obj.data[dataCount-1].link)
-			
+				document.write(obj.data[dataCount-1].link + "<br>")
 			}
 		tagCount=tagCount-1;
 		}
