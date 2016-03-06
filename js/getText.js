@@ -56,7 +56,7 @@ function sortPics(){
 	for (var i =0; i < zipped.length; i++) {
     var photo = zipped[i][0];
     var rating = zipped[i][1];
-		html += "<tr> <td>" + rating.type;
+		html += "<tr> <td>" + rating.type + ":<br>" + rating.score;
     html += "</td><td> <a href=" + photo.link + ">" + photo.caption.text + "</a> </td>"
     html += "<td> <img src=" + photo.images.thumbnail.url + "alt=" + photo.caption.text + " </td></tr>";
     //ratings += "<li>" + zipped[i][1].type + "</li>";
