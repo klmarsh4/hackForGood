@@ -52,16 +52,16 @@ function sortPics(){
     console.log(zipped);
 	//put array into html list
 	//var urls = "", ratings = "";
-  var html = "";
+  var html = "  <tr><th>Sentiment</th><th>Caption</th><th>Image</th></tr>";
 	for (var i =0; i < zipped.length; i++) {
     var photo = zipped[i][0];
     var rating = zipped[i][1];
-		html += "<li>" + rating.type;
-    html += ": <a href=" + photo.link + ">" + photo.caption.text + "</a>"
-    html += " <img src=" + photo.images.thumbnail.url + "alt=" + photo.caption.text + " </li>";
+		html += "<tr> <td>" + rating.type;
+    html += "</td><td> <a href=" + photo.link + ">" + photo.caption.text + "</a> </td>"
+    html += "<td> <img src=" + photo.images.thumbnail.url + "alt=" + photo.caption.text + " </td></tr>";
     //ratings += "<li>" + zipped[i][1].type + "</li>";
 	}
-	document.getElementById("zipped").innerHTML = html;
+	document.getElementById("table").innerHTML = html;
   //document.getElementById("ratings").innerHTML = ratings;
 	
   } else{
